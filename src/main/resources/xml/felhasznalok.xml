@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<felhasznalok>
+    
+    <felhasznalo>
+        <felhasznalonev>robert</felhasznalonev>
+        <jelszo>1234</jelszo>
+        <pont>5</pont>
+    </felhasznalo>
+
+<felhasznalo>
+    <felhasznalonev>u</felhasznalonev>
+    <jelszo>1</jelszo>
+    <pont>7</pont>
+  </felhasznalo>
+
+
+
+<felhasznalo>
+    <felhasznalonev>user</felhasznalonev>
+    <jelszo>1</jelszo>
+    <pont>5</pont>
+  </felhasznalo>
+
+
+
+<felhasznalo>
+    <felhasznalonev>robi</felhasznalonev>
+    <jelszo>12</jelszo>
+    <pont>5</pont>
+  </felhasznalo>
+
+
+<felhasznalo>
+    <felhasznalonev>admin</felhasznalonev>
+    <jelszo>admin</jelszo>
+    <pont>20</pont>
+  </felhasznalo>
+
+
+
+
+
+
+</felhasznalok>
