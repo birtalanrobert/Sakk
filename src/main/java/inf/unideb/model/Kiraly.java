@@ -1,20 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inf.unideb.model;
 
 /**
- *
+ * Egy király bábút tartalmazó osztály. A {@code Babu} osztály leszármazottja. 
+ * Minden bábú típus egy külön osztállyal rendelkezik, amelynek a lépés
+ * ellenőrző metódusai vannak felülírva.
+ * 
  * @author Birtalan
  */
 public class Kiraly extends Babu {
     
+    /**
+     * Konstruktor egy {@code Kiraly} objektum létrehozására.
+     * Meghívja a {@code Babu} osztály konstruktorát beállítva
+     * a típust "K"-ra, azaz királyra.
+     * 
+     * @param szin a király színe
+     */
     public Kiraly(String szin) {
         super(szin,"K");
     }
-    
+     
+    /**
+     * Végrehajtja egy király bábú lépését amennyiben jó lépés volt megadva.
+     * 
+     * @param i amelyik sorból lépünk a bábúval
+     * @param j amelyik oszlopból lépünk a bábúval
+     * @param x amelyik sorba lépünk a bábúval
+     * @param y amelyik oszlopba lépünk a bábúval
+     * @return a lépés helyessége, 0 ha nem lehet meglépni, 1 ha meg lehet lépni
+     * és egyszerű lépésről van szó, és 2 ha rosálásról van szó. Utóbbi esetében
+     * elvégzi a bástya bábú lépését is a király lépése mellett.
+     */
     @Override
     public int lepes(int i, int j, int x, int y) {
         Tabla t = new Tabla();

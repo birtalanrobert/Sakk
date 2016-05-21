@@ -10,11 +10,20 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+/**
+ * A Sakk applikáció main() metódusát tartalmazó osztály.
+ * @author Birtalan
+ */
 public class MainApp extends Application {
 
     private static final Logger logger = LoggerFactory.getLogger(MainApp.class);
     
+    /**
+    *Az applikáció {@code start()} metódusa.
+    *
+    * @param stage Stage objektum
+    * @throws java.lang.Exception
+    */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Bejelentkezes.fxml"));
@@ -29,16 +38,12 @@ public class MainApp extends Application {
         logger.info("A program elindult.");
     }
 
-    /**
-     * The main() method is ignored in correctly deployed JavaFX application.
-     * main() serves only as fallback in case the application can not be
-     * launched through deployment artifacts, e.g., in IDEs with limited FX
-     * support. NetBeans ignores main().
-     *
-     * @param args the command line arguments
-     */
+     /**
+    *Az applikáció {@code main()} metódusa.
+    *
+    *@param args parancssori argumentumok
+    */
     public static void main(String[] args) {
         launch(args);
     }
-
 }

@@ -8,7 +8,9 @@ package inf.unideb.controller;
 import inf.unideb.model.Felhasznalo;
 import inf.unideb.model.RegisztracioKezeles;
 import inf.unideb.model.XMLFeldolgozoFelhaszanlo;
+
 import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,11 +23,16 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.xml.transform.TransformerException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  *
  * @author Birtalan
  */
 public class RegisztracioController {
+    private static final Logger logger = LoggerFactory.getLogger(RegisztracioController.class);
+
     @FXML
     private TextField textField1;
     @FXML
@@ -53,6 +60,8 @@ public class RegisztracioController {
         scene.getStylesheets().add("/styles/Styles.css");
         stage.setScene(scene);
         stage.show(); 
+        
+        logger.info("Vissza a bejelentkezéshez.");
     }
     
     @FXML
@@ -69,6 +78,7 @@ public class RegisztracioController {
                 Felhasznalo felhasznalo = new Felhasznalo(felhasznalonev, jelszo1, 0);
                 if(regKezeles.regisztracioEllenorzes(felhasznalo)) {
                     feldolgozo.addFelhasznalo(felhasznalo);
+                    logger.info("Új felhasználó hozzáadva az adatbázishoz.");
                     
                     Stage stage;
                     Parent root;
@@ -82,14 +92,22 @@ public class RegisztracioController {
                     scene.getStylesheets().add("/styles/Styles.css");
                     stage.setScene(scene);
                     stage.show(); 
+                    
+                    logger.info("Tovább a bejelentkezéshez.");
                 }
-                else
+                else {
                     label.setText("Felhasználónév már szerepel!");
+                    logger.info("A felhasználónév már szerepel az adatbázisban.");
+                }
             }
-            else
+            else {
                 label.setText("Üresen maradt a felhasználónév vagy a jelszó!");
+                logger.info("Üresen maradt a felhasználónév vagy a jelszó mező.");
+            }
         }
-        else
-            label.setText("Nem egyezik meg a két jelszó!");
+        else {
+            label.setText("Nem egyezzik meg a két jelszó!");
+            logger.info("Nem egyezzik a két jelszó mező.");
+        }
     }
 }

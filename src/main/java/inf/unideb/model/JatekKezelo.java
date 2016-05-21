@@ -7,7 +7,8 @@ package inf.unideb.model;
 
 import java.io.IOException;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,11 +23,12 @@ import org.xml.sax.SAXException;
 public class JatekKezelo {
     private static Jatekos jatekos1;
     private static Jatekos jatekos2;
-    private static Jatekos nyeroJatekos;
     private static int lepesekSzama = 0;
     private static int koordI;
     private static int koordJ;
     private static Node node; 
+    
+    private static final Logger logger = LoggerFactory.getLogger(JatekKezelo.class);
     
     public Jatekos getJatekos1() {
         return JatekKezelo.jatekos1;
@@ -250,13 +252,14 @@ public class JatekKezelo {
             jatekos2.setPont(pontszam);
         }
         
+        logger.info("Nyerő játékos pontszáma frissítve.");
         try {
             if(jatekos1.getNyert())
                 feldolgozo.felhasznaloFrisites(jatekos1);
             if(jatekos2.getNyert())
                 feldolgozo.felhasznaloFrisites(jatekos2);
         } catch (ParserConfigurationException | SAXException | IOException ex) {
-            Logger.getLogger(JatekKezelo.class.getName()).log(Level.SEVERE, null, ex);
+            logger.warn("Nincs játékos az adatbázisban.");
         }
     }
 }

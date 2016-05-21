@@ -13,8 +13,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -38,7 +38,7 @@ public class XMLFeldolgozoFelhaszanlo {
     public XMLFeldolgozoFelhaszanlo() {
     }
     
-    
+    private static final Logger logger = LoggerFactory.getLogger(XMLFeldolgozoFelhaszanlo.class);
     
     public List<Felhasznalo> getFelhasznalok() {
         try {
@@ -68,7 +68,7 @@ public class XMLFeldolgozoFelhaszanlo {
             return felhasznalok;
         }
         catch(ParserConfigurationException | SAXException | IOException | DOMException | NumberFormatException e) {
-            System.out.println("NEM JOOOO");
+            logger.warn("Nincs egy felhasználó sem az adatbázisban.");
             return new ArrayList<Felhasznalo>();
             
         }
@@ -80,7 +80,6 @@ public class XMLFeldolgozoFelhaszanlo {
             DocumentBuilder dBuilder;
             dBuilder = dbFactory.newDocumentBuilder();
         
-            //Document doc = dBuilder.parse(ClassLoader.getSystemResourceAsStream("xml/felhasznalok.xml"));
             Document doc = dBuilder.parse("src/main/resources/xml/felhasznalok.xml");//kiszedni az utvonalat
             Element gyoker = doc.getDocumentElement();
             Element ujFelhasznalo = doc.createElement("felhasznalo");
@@ -111,7 +110,7 @@ public class XMLFeldolgozoFelhaszanlo {
             transformer.transform(source, result);
             
         } catch (ParserConfigurationException | SAXException | IOException ex) {
-            Logger.getLogger(XMLFeldolgozoFelhaszanlo.class.getName()).log(Level.SEVERE, null, ex);
+            logger.warn("Kivétel keletkezett a felhasználó hozzáadásakor.");
         }
     }
     
@@ -122,7 +121,7 @@ public class XMLFeldolgozoFelhaszanlo {
                 try {
                     addFelhasznalo(new Felhasznalo(felhasznalo.getFelhasznalonev(), felhasznalo.getJelszo(), j.getPont()));
                 } catch (TransformerException ex) {
-                    Logger.getLogger(XMLFeldolgozoFelhaszanlo.class.getName()).log(Level.SEVERE, null, ex);
+                    logger.warn("Kivétel keletkezett a felhasználó hozzáadásakor.");
                 }
                 
     }
@@ -144,8 +143,6 @@ public class XMLFeldolgozoFelhaszanlo {
             Element jelszo = (Element)felhasznalo.getElementsByTagName("jelszo").item(0);
             String jelszoTartalom = jelszo.getTextContent();
             
-
-                    
             if (felhasznalonevTartalom.equals(j.getFelhasznalonev())) {
                 felhasznalo.getParentNode().removeChild(felhasznalo);
                 jatekos = new Felhasznalo(felhasznalonevTartalom, jelszoTartalom, 0);

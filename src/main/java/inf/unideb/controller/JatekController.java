@@ -7,9 +7,11 @@ package inf.unideb.controller;
 
 
 import inf.unideb.model.JatekKezelo;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,11 +29,17 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javax.xml.transform.TransformerException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  *
  * @author Birtalan
  */
 public class JatekController implements Initializable{
+    
+    private static final Logger logger = LoggerFactory.getLogger(JatekController.class);
+    
     @FXML
     private Label label1;
     @FXML
@@ -179,6 +187,8 @@ public class JatekController implements Initializable{
         j.getJatekos2().setNyert(true);
         j.pontokFrissitese();
         
+        logger.info("Első játékos feladta.");
+        
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Vége a játéknak!");
         alert.setHeaderText(null);
@@ -186,7 +196,6 @@ public class JatekController implements Initializable{
 
         alert.showAndWait();
         
-        /**/
         
         Stage stage;
         Parent root;
@@ -200,6 +209,8 @@ public class JatekController implements Initializable{
         scene.getStylesheets().add("/styles/Styles.css");
         stage.setScene(scene);
         stage.show(); 
+        
+        logger.info("Irány a toplistához.");
     }
     
     @FXML
@@ -207,16 +218,17 @@ public class JatekController implements Initializable{
         JatekKezelo j = new JatekKezelo();
         j.getJatekos1().setNyert(true);
         j.pontokFrissitese();
+        
+        logger.info("Második játékos feladta.");
+        
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Vége a játéknak!");
         alert.setHeaderText(null);
         alert.setContentText("Nyert: " + j.getJatekos1().getFelhasznalonev());
 
         alert.showAndWait();
-
-        /**/
         
-         Stage stage;
+        Stage stage;
         Parent root;
 
         stage = (Stage) feladas1.getScene().getWindow();
@@ -228,6 +240,8 @@ public class JatekController implements Initializable{
         scene.getStylesheets().add("/styles/Styles.css");
         stage.setScene(scene);
         stage.show();
+        
+        logger.info("Irány a toplistához.");
     }
     
     
@@ -240,10 +254,14 @@ public class JatekController implements Initializable{
                         jatekKezelo.setKoordI(GridPane.getRowIndex(node));
                         jatekKezelo.setKoordJ(GridPane.getColumnIndex(node));
                         jatekKezelo.setNode(node);
+                        
+                        logger.info("Megfelelő szinű bábut tartalmazó mező volt választva.");
                     }
                     else {
                         jatekKezelo.setKoordI(-1);
                         jatekKezelo.setKoordJ(-1);
+                        
+                        logger.info("Nem megfelelő szinű bábut tartalmazó mező volt választva.");
                     }
                 }
             }
@@ -260,6 +278,7 @@ public class JatekController implements Initializable{
                         vegeVan = jatekKezelo.vegeVan(GridPane.getRowIndex(node),GridPane.getColumnIndex(node));
                         if(vegeVan) {
                             jatekKezelo.kiNyert(GridPane.getRowIndex(node), GridPane.getColumnIndex(node));
+                            logger.info("Játéknak vége, nyerő játékos beállítva.");
                         }
                         int lepes = jatekKezelo.lepesEllenorzese(
                                      jatekKezelo.getKoordI(), jatekKezelo.getKoordJ(), 
@@ -269,6 +288,8 @@ public class JatekController implements Initializable{
                                ((ImageView)node).setImage(((ImageView)jatekKezelo.getNode()).getImage());
                                ((ImageView)jatekKezelo.getNode()).setImage(jatekKezelo.setUres().getImage());
                                jatekKezelo.lepesekSzamaNoveles();
+                               
+                               logger.info("Helyes sima lépés meglépve.");
                         }
                         if(lepes == 2) {
                             ((ImageView)node).setImage(((ImageView)jatekKezelo.getNode()).getImage());
@@ -294,6 +315,7 @@ public class JatekController implements Initializable{
                                 }
                             }
                             jatekKezelo.lepesekSzamaNoveles();
+                            logger.info("Helyes rosáló lépés meglépve.");
                         }
                         if(lepes == 3) {
                             if(jatekKezelo.getLepesekSzama() % 2 == 0)
@@ -302,10 +324,13 @@ public class JatekController implements Initializable{
                                 ((ImageView)node).setImage(jatekKezelo.setKiralyno(new ImageView(), "B").getImage());
                             ((ImageView)jatekKezelo.getNode()).setImage(jatekKezelo.setUres().getImage());
                             jatekKezelo.lepesekSzamaNoveles();
+                            logger.info("Helyes paraszt speciális lépés meglépve.");
                         }
                         if(lepes != 0 && vegeVan) {
                             
                             jatekKezelo.pontokFrissitese();
+                            
+                            logger.info("Vége a játéknak, nyerő játékos pontszáma frissítve.");
                             
                             Alert alert = new Alert(AlertType.INFORMATION);
                             alert.setTitle("Vége a játéknak!");
@@ -330,12 +355,18 @@ public class JatekController implements Initializable{
                             scene.getStylesheets().add("/styles/Styles.css");
                             stage.setScene(scene);
                             stage.show(); 
+                            
+                            logger.info("Ugrás a toplistára.");
                         }
                         
-                        if(jatekKezelo.getLepesekSzama() % 2 == 0)
+                        if(jatekKezelo.getLepesekSzama() % 2 == 0) {
                             label3.setText("Fehér játékos következik!");
-                        else
+                            logger.info("Fehér játékos következik.");
+                        }
+                        else {
                             label3.setText("Fekete játékos következik!");
+                            logger.info("Fekete játékos következik.");
+                        }
                     }
                 }
             }
@@ -352,6 +383,7 @@ public class JatekController implements Initializable{
         label3.setText("Fehér játékos következik!");
         
         jatekosok.tablaInicializalas();
+        logger.info("Tábla inicializálása.");
         
         iv00 = jatekosok.setBastya(iv00,jatekosok.getJatekos2().getSzin());
         iv01 = jatekosok.setLo(iv01,jatekosok.getJatekos2().getSzin());
@@ -387,6 +419,6 @@ public class JatekController implements Initializable{
         iv76 = jatekosok.setLo(iv76,jatekosok.getJatekos1().getSzin());
         iv77 = jatekosok.setBastya(iv77,jatekosok.getJatekos1().getSzin());
         
-        
+        logger.info("Megfelelő képek beállítása a megfelelő ImageViewhoz.");
     }    
 }

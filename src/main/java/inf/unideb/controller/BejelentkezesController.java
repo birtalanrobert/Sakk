@@ -8,7 +8,9 @@ package inf.unideb.controller;
 import inf.unideb.model.BejelentkezesKezeles;
 import inf.unideb.model.JatekKezelo;
 import inf.unideb.model.Jatekos;
+
 import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,11 +22,16 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  *
  * @author Birtalan
  */
 public class BejelentkezesController {
+    
+    private static final Logger logger = LoggerFactory.getLogger(BejelentkezesController.class);
     
     @FXML
     private TextField textField1;
@@ -58,17 +65,25 @@ public class BejelentkezesController {
                         szin = "B";
 
                     Jatekos j = new Jatekos(felhasznalonev, bejelentkezes.getPontszam(), szin, false);
-                    if(belepoJatekos.getJatekos1() == null)
+                    if(belepoJatekos.getJatekos1() == null) {
                         belepoJatekos.setJatekos1(j);
-                    else
+                        logger.info("Első játékos sikeres belépése.");
+                    }
+                    else {
                         belepoJatekos.setJatekos2(j); 
+                        logger.info("Második játékos sikeres belépése.");
+                    }
                     bejelentkezes.belepettJatekosokNovelese();
                 }
-                else
+                else {
                     label.setText("Ez a felhasználónév már belépett!");
+                    logger.info("A megadott felhasználónév már bejelentkezett.");
+                }
             }
-            else
+            else {
                 label.setText("Nem jó felhasználónév vagy jelszó!");
+                logger.info("Nem jó felhasználónév vagy jelszó.");
+            }
         if(ok) {
             if(bejelentkezes.belepettJatekosok() == 2) {
                 Stage stage;
@@ -83,6 +98,8 @@ public class BejelentkezesController {
                 scene.getStylesheets().add("/styles/Styles.css");
                 stage.setScene(scene);
                 stage.show();
+                
+                logger.info("Mindkét játékos bejelentkezett. Indul a játék.");
             }
             else {
                 Stage stage;
@@ -97,6 +114,7 @@ public class BejelentkezesController {
                 scene.getStylesheets().add("/styles/Styles.css");
                 stage.setScene(scene);
                 stage.show();
+                
             }
         }
     }
@@ -115,6 +133,8 @@ public class BejelentkezesController {
         scene.getStylesheets().add("/styles/Styles.css");
         stage.setScene(scene);
         stage.show();
+        
+        logger.info("Regisztráció ablak megnyítása.");
     }
 }
 

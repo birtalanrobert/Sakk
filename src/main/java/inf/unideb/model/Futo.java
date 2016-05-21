@@ -1,21 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inf.unideb.model;
 
 /**
- *
+ * Egy futó bábút tartalmazó osztály. A {@code Babu} osztály leszármazottja. 
+ * Minden bábú típus egy külön osztállyal rendelkezik, amelynek a lépés
+ * ellenőrző metódusai vannak felülírva.
+ * 
  * @author Birtalan
  */
 public class Futo extends Babu {
 
+    /**
+     * Konstruktor egy {@code Futo} objektum létrehozására.
+     * Meghívja a {@code Babu} osztály konstruktorát beállítva
+     * a típust "F"-re, azaz futóra.
+     * 
+     * @param szin a futó színe
+     */
     public Futo(String szin) {
         super(szin,"F");
     }
     
-
+    /**
+     * {@inheritDoc} Ellenőrzi, hogy jó lépés volt megadva. Jó lépés esetén 1
+     * a visszatérési érték, rossz lépés esetén 0.
+     * 
+     * @param i amelyik sorból lépünk a bábúval
+     * @param j amelyik oszlopból lépünk a bábúval
+     * @param x amelyik sorba lépünk a bábúval
+     * @param y amelyik oszlopba lépünk a bábúval
+     * @return lépés jól volt e megadva
+     */
     @Override
     public int lepesEllenorzese(int i, int j, int x, int y) {
         Tabla t = new Tabla();
@@ -75,5 +89,4 @@ public class Futo extends Babu {
             }
         return 0;
     }
-    
 }
