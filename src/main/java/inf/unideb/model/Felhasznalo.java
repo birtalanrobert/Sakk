@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inf.unideb.model;
 
 import java.util.Comparator;
 
 /**
- *
+ * Egy felhasználót reprezentáló osztály.
+ * 
  * @author Birtalan
  */
 public class Felhasznalo {
@@ -17,36 +13,61 @@ public class Felhasznalo {
     private String jelszo;
     private int pont;
     
+    /**
+     * Konstruktor egy {@code Felhasznalo} objektum létrehozására.
+     * 
+     * @param felhasznalonev egy felhasználónév.
+     * @param jelszo egy jelszó.
+     * @param pont egy pontszám.
+     */
     public Felhasznalo(String felhasznalonev, String jelszo, int pont) {
         this.felhasznalonev = felhasznalonev;
         this.jelszo = jelszo;
         this.pont = pont;
     }
     
+    /**
+     * Visszaadja egy felhasználó felhasználónevét.
+     * 
+     * @return egy felhasználónév.
+     */
     public String getFelhasznalonev() {
         return this.felhasznalonev;
     }
     
+    /**
+     * Visszaadja egy felhasználó jelszavát.
+     * 
+     * @return egy jelszó.
+     */
     public String getJelszo() {
         return this.jelszo;
     }
     
+    /**
+     * Visszaadja egy felhasználó pontszámát.
+     * 
+     * @return egy pontszám.
+     */
     public int getPont() {
         return this.pont;
     }
     
+    /**
+     * Beállítja egy felhasználó pontszámát.
+     * 
+     * @param p egy pontszám.
+     */
     public void setPont(int p) {
         this.pont = p;
     }
-    
-    @Override
-    public String toString() {
-        return "Felhasznalonev: " + felhasznalonev + "pontszam: " + pont;
-    }
   
-     public static Comparator<Felhasznalo> felhasznaloRendezo = new Comparator<Felhasznalo>() {
+    /**
+     * Egy {@code Comparator<Felhasznalo>} változó, amelynek segítségével a felhasználókat
+     * majd csökkenő sorrendbe lehet rendezni.
+     */
+    public static Comparator<Felhasznalo> felhasznaloRendezo = new Comparator<Felhasznalo>() {
 
-        //@Override
 	public int compare(Felhasznalo s1, Felhasznalo s2) {
 
 	   int rollno1 = s1.getPont();

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inf.unideb.controller;
 
 import inf.unideb.model.Felhasznalo;
@@ -21,15 +16,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.xml.sax.SAXException;
 
-/**
- *
- * @author Birtalan
- */
+
 public class RegisztracioController {
     private static final Logger logger = LoggerFactory.getLogger(RegisztracioController.class);
 
@@ -65,7 +59,7 @@ public class RegisztracioController {
     }
     
     @FXML
-    private void regisztracioGomb(ActionEvent event) throws IOException, TransformerException {
+    private void regisztracioGomb(ActionEvent event) throws IOException, TransformerException, ParserConfigurationException, SAXException {
         String felhasznalonev = textField1.getText();
         String jelszo1 = textField2.getText();
         String jelszo2 = textField3.getText();

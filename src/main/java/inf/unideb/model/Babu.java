@@ -12,8 +12,8 @@ public abstract class Babu {
     /**
      * Konstruktor egy {@code Babu} objektum létrehozására.
      * 
-     * @param szin a bábú színe
-     * @param tipus a bábú típusa
+     * @param szin a bábú színe.
+     * @param tipus a bábú típusa.
      */
     public  Babu(String szin, String tipus) {
         this.szin = szin;
@@ -23,7 +23,7 @@ public abstract class Babu {
     /**
      * Visszaadja a bábú színét.
      * 
-     * @return a bábú színe
+     * @return a bábú színe.
      */
     public String getSzin() {
         return this.szin;
@@ -32,7 +32,7 @@ public abstract class Babu {
     /**
      * Beállítja a bábú típusát.
      * 
-     * @param t a bábú típusa
+     * @param t a bábú típusa.
      */
     public void setTipus(String t) {
         this.tipus = t;
@@ -41,7 +41,7 @@ public abstract class Babu {
     /**
      * Visszaadja a bábú típusát.
      * 
-     * @return a bábú típusa
+     * @return a bábú típusa.
      */
     public String getTipus() {
         return this.tipus;
@@ -49,12 +49,14 @@ public abstract class Babu {
     
     /**
      * Végrehajtja egy bábú lépését amennyiben jó lépés volt megadva.
+     * A visszatérési érték 0, ha nem lehet meglépni a lépést, 
+     * 1 ha meg lehet lépni lépést.
      * 
-     * @param i amelyik sorból lépünk a bábúval
-     * @param j amelyik oszlopból lépünk a bábúval
-     * @param x amelyik sorba lépünk a bábúval
-     * @param y amelyik oszlopba lépünk a bábúval
-     * @return a lépés helyessége, 0 ha nem lehet meglépni, 1 ha meg lehet lépni
+     * @param i amelyik sorból lépünk a bábúval.
+     * @param j amelyik oszlopból lépünk a bábúval.
+     * @param x amelyik sorba lépünk a bábúval.
+     * @param y amelyik oszlopba lépünk a bábúval.
+     * @return a lépés helyessége.
      */
     public int lepes(int i, int j, int x, int y) {
         Tabla t = new Tabla();
@@ -69,11 +71,11 @@ public abstract class Babu {
     /**
      * Ellenőrzi, hogy jó lépés volt megadva.
      * 
-     * @param i amelyik sorból lépünk a bábúval
-     * @param j amelyik oszlopból lépünk a bábúval
-     * @param x amelyik sorba lépünk a bábúval
-     * @param y amelyik oszlopba lépünk a bábúval
-     * @return lépés jól volt e megadva
+     * @param i amelyik sorból lépünk a bábúval.
+     * @param j amelyik oszlopból lépünk a bábúval.
+     * @param x amelyik sorba lépünk a bábúval.
+     * @param y amelyik oszlopba lépünk a bábúval.
+     * @return lépés jól volt e megadva.
      */
     public abstract int lepesEllenorzese(int i, int j, int x, int y);
 }

@@ -7,8 +7,11 @@ package inf.unideb;
 
 import inf.unideb.model.Felhasznalo;
 import inf.unideb.model.RegisztracioKezeles;
+import java.io.IOException;
+import javax.xml.parsers.ParserConfigurationException;
 import static org.junit.Assert.assertFalse;
 import org.junit.Test;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -16,7 +19,7 @@ import org.junit.Test;
  */
 public class RegisztracioKezelesTest {
     @Test
-    public void regisztracioEllenorzes() {
+    public void regisztracioEllenorzes() throws ParserConfigurationException, SAXException, IOException {
         RegisztracioKezeles kezelo = new RegisztracioKezeles();
         Felhasznalo f = new Felhasznalo("admin", "admin", 10);
         assertFalse("Regisztráció létező felhasználó", kezelo.regisztracioEllenorzes(f));

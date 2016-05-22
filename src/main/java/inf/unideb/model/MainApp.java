@@ -21,8 +21,8 @@ public class MainApp extends Application {
     /**
     *Az applikáció {@code start()} metódusa.
     *
-    * @param stage Stage objektum
-    * @throws java.lang.Exception
+    * @param stage Stage objektum.
+    * @throws java.lang.Exception kivételt dob, betöltési hiba esetén.
     */
     @Override
     public void start(Stage stage) throws Exception {
@@ -41,7 +41,7 @@ public class MainApp extends Application {
      /**
     *Az applikáció {@code main()} metódusa.
     *
-    *@param args parancssori argumentumok
+    *@param args parancssori argumentumok.
     */
     public static void main(String[] args) {
         launch(args);

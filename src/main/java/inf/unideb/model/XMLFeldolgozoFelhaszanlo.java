@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inf.unideb.model;
 
 import java.io.File;
@@ -29,24 +24,32 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
- *
+ * Az XML fájl feldolgozását reprezentáló osztály.
+ * 
  * @author Birtalan
  */
 public class XMLFeldolgozoFelhaszanlo {
     
-    
-    public XMLFeldolgozoFelhaszanlo() {
-    }
-    
     private static final Logger logger = LoggerFactory.getLogger(XMLFeldolgozoFelhaszanlo.class);
     
-    public List<Felhasznalo> getFelhasznalok() {
-        try {
+    /**
+     * Az XML fájlban szereplő összes felhasználót kiolvassa egy {@code List<Felhasznalo>}
+     * listába, majd rendezi őket csökkenő sorrendbe a ponsztámuk szerint.
+     * 
+     * @return egy {@code List<Felhasznalo>} listát térit vissza.     
+     * 
+     * @throws javax.xml.parsers.ParserConfigurationException kivételt dob,
+     * konfigurációs hoba esetén.
+     * @throws org.xml.sax.SAXException kivételt dob, XML feldolgozás esetén.
+     * @throws java.io.IOException kivételt dob, input/output hiba esetén.
+     * @throws DOMException kivételt dob, elvégezhetetlen DOM műveleti hiba esetén.
+     * @throws NumberFormatException kivételt dob, Stringről intre való átalakítási hiba esetén.
+     */
+    public List<Felhasznalo> getFelhasznalok() throws ParserConfigurationException, SAXException, IOException {
             List<Felhasznalo> felhasznalok = new ArrayList<>();
 
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-           // Document doc = dBuilder.parse(ClassLoader.getSystemResourceAsStream("xml/felhasznalok.xml"));
             Document doc = dBuilder.parse("src/main/resources/xml/felhasznalok.xml");//kiszedni az utvonalat
 
             doc.getDocumentElement().normalize();
@@ -66,16 +69,20 @@ public class XMLFeldolgozoFelhaszanlo {
             Collections.sort(felhasznalok, Felhasznalo.felhasznaloRendezo);
             
             return felhasznalok;
-        }
-        catch(ParserConfigurationException | SAXException | IOException | DOMException | NumberFormatException e) {
-            logger.warn("Nincs egy felhasználó sem az adatbázisban.");
-            return new ArrayList<Felhasznalo>();
-            
-        }
     }
     
-    public void addFelhasznalo(Felhasznalo felhasznalo) throws TransformerException {
-         try {
+    /**
+     * A megkapott {@code Felhasznalo}-t hozzáadja az XML fájl felhasználóihoz.
+     * 
+     * @param felhasznalo a hozzáadni kívánt felhasználónév.
+     * 
+     * @throws TransformerException kivételt dob, transzformációs hiba esetén.
+     * @throws javax.xml.parsers.ParserConfigurationException kivételt dob,
+     * konfigurációs hoba esetén.
+     * @throws org.xml.sax.SAXException kivételt dob, XML feldolgozás esetén.
+     * @throws java.io.IOException kivételt dob, input/output hiba esetén.
+     */
+    public void addFelhasznalo(Felhasznalo felhasznalo) throws TransformerException, ParserConfigurationException, SAXException, IOException {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder;
             dBuilder = dbFactory.newDocumentBuilder();
@@ -109,23 +116,45 @@ public class XMLFeldolgozoFelhaszanlo {
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
             transformer.transform(source, result);
             
-        } catch (ParserConfigurationException | SAXException | IOException ex) {
-            logger.warn("Kivétel keletkezett a felhasználó hozzáadásakor.");
-        }
     }
     
+    /**
+     * A megkapott {@code Jatekos} felhasználónevét és pontszámát felhasználva,
+     * kitörli az XML fájlból azt a felhasználót amelyiknek a felhasználóneve
+     * megeggyezik a megadott játékos felhasználónevével. Majd hozzáadja a 
+     * kitörölt felhasználót, úgy, hogy a pontszámát már frissítve tölti fel.
+     * 
+     * @param j a frissíteni kívánt játékos.
+     * 
+     * @throws javax.xml.parsers.ParserConfigurationException kivételt dob,
+     * konfigurációs hoba esetén.
+     * @throws org.xml.sax.SAXException kivételt dob, XML feldolgozás esetén.
+     * @throws java.io.IOException kivételt dob, input/output hiba esetén.
+     * @throws TransformerConfigurationException transzformáció konfigurácíós hiba esetén.
+     * @throws TransformerException kivételt dob, transzformácíós hiba esetén.
+     */
     public void felhasznaloFrisites(Jatekos j) throws ParserConfigurationException, SAXException, IOException, TransformerConfigurationException, TransformerException {
         XMLFeldolgozoFelhaszanlo feldolgozo = new XMLFeldolgozoFelhaszanlo();
         Felhasznalo felhasznalo = feldolgozo.felhasznaloTorles(j);
                 
-                try {
-                    addFelhasznalo(new Felhasznalo(felhasznalo.getFelhasznalonev(), felhasznalo.getJelszo(), j.getPont()));
-                } catch (TransformerException ex) {
-                    logger.warn("Kivétel keletkezett a felhasználó hozzáadásakor.");
-                }
+        addFelhasznalo(new Felhasznalo(felhasznalo.getFelhasznalonev(), felhasznalo.getJelszo(), j.getPont()));
                 
     }
 
+    /**
+     * A megkapott {@code Jatekos}-t felhasználva törli a felhasználók közül
+     * azt, amelyiknek a felhasználóneve megeggyezik a játékos felhasználónevével.
+     * 
+     * @param j törölni kívánt játékos.
+     * @return egy felhasználót, amelyiket kitöröltük a felhasználók közül.
+     * 
+     * @throws javax.xml.parsers.ParserConfigurationException kivételt dob,
+     * konfigurációs hoba esetén.
+     * @throws org.xml.sax.SAXException kivételt dob, XML feldolgozás esetén.
+     * @throws java.io.IOException kivételt dob, input/output hiba esetén.
+     * @throws TransformerConfigurationException transzformáció konfigurácíós hiba esetén.
+     * @throws TransformerException kivételt dob, transzformácíós hiba esetén.
+     */
     public Felhasznalo felhasznaloTorles(Jatekos j) throws ParserConfigurationException, 
             SAXException, IOException, TransformerConfigurationException, TransformerException {
         Felhasznalo jatekos = new Felhasznalo("", "", 0);

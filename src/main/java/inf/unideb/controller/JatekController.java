@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inf.unideb.controller;
 
 
@@ -27,10 +22,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -182,7 +179,7 @@ public class JatekController implements Initializable{
     private ImageView iv77;
     
     @FXML
-    private void feladasGomb1(ActionEvent event) throws IOException, TransformerException {
+    private void feladasGomb1(ActionEvent event) throws IOException, TransformerException, ParserConfigurationException, SAXException {
         JatekKezelo j = new JatekKezelo();
         j.getJatekos2().setNyert(true);
         j.pontokFrissitese();
@@ -214,7 +211,7 @@ public class JatekController implements Initializable{
     }
     
     @FXML
-    private void feladasGomb2(ActionEvent event) throws IOException, TransformerException {
+    private void feladasGomb2(ActionEvent event) throws IOException, TransformerException, ParserConfigurationException, SAXException {
         JatekKezelo j = new JatekKezelo();
         j.getJatekos1().setNyert(true);
         j.pontokFrissitese();
@@ -268,7 +265,7 @@ public class JatekController implements Initializable{
         }
     }
     
-    public void elengedettMezo(MouseEvent e) throws IOException, TransformerException {
+    public void elengedettMezo(MouseEvent e) throws IOException, TransformerException, ParserConfigurationException, SAXException {
         JatekKezelo jatekKezelo = new JatekKezelo();
         boolean vegeVan;
         for( Node node: gridPane.getChildren()) {

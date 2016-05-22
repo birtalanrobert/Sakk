@@ -14,7 +14,7 @@ public class Futo extends Babu {
      * Meghívja a {@code Babu} osztály konstruktorát beállítva
      * a típust "F"-re, azaz futóra.
      * 
-     * @param szin a futó színe
+     * @param szin a futó színe.
      */
     public Futo(String szin) {
         super(szin,"F");
@@ -24,11 +24,11 @@ public class Futo extends Babu {
      * {@inheritDoc} Ellenőrzi, hogy jó lépés volt megadva. Jó lépés esetén 1
      * a visszatérési érték, rossz lépés esetén 0.
      * 
-     * @param i amelyik sorból lépünk a bábúval
-     * @param j amelyik oszlopból lépünk a bábúval
-     * @param x amelyik sorba lépünk a bábúval
-     * @param y amelyik oszlopba lépünk a bábúval
-     * @return lépés jól volt e megadva
+     * @param i amelyik sorból lépünk a bábúval.
+     * @param j amelyik oszlopból lépünk a bábúval.
+     * @param x amelyik sorba lépünk a bábúval.
+     * @param y amelyik oszlopba lépünk a bábúval.
+     * @return lépés jól volt e megadva.
      */
     @Override
     public int lepesEllenorzese(int i, int j, int x, int y) {

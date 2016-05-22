@@ -7,10 +7,11 @@ package inf.unideb;
 
 import org.junit.Test;
 import inf.unideb.model.BejelentkezesKezeles;
-import inf.unideb.model.Tabla;
-import static org.junit.Assert.assertEquals;
+import java.io.IOException;
+import javax.xml.parsers.ParserConfigurationException;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -19,7 +20,7 @@ import static org.junit.Assert.assertTrue;
 public class BejelentkezesKezelesTest {
     
     @Test
-    public void felhasznaloEgyezesEllenorzes() {
+    public void felhasznaloEgyezesEllenorzes() throws ParserConfigurationException, SAXException, IOException {
         BejelentkezesKezeles kezelo = new BejelentkezesKezeles();
         assertTrue("Felhasználóegyezés", kezelo.felhasznaloEgyezes("admin", "admin"));
     }

@@ -21,14 +21,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.xml.sax.SAXException;
 
-/**
- *
- * @author Birtalan
- */
+
 public class BejelentkezesController {
     
     private static final Logger logger = LoggerFactory.getLogger(BejelentkezesController.class);
@@ -45,7 +44,7 @@ public class BejelentkezesController {
     private Label label;
     
     @FXML
-    private void belepesGomb(ActionEvent event) throws IOException {
+    private void belepesGomb(ActionEvent event) throws IOException, ParserConfigurationException, SAXException {
         String felhasznalonev = textField1.getText();
         String jelszo = textField2.getText();
         boolean ok = false;

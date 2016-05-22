@@ -14,7 +14,7 @@ public class Kiraly extends Babu {
      * Meghívja a {@code Babu} osztály konstruktorát beállítva
      * a típust "K"-ra, azaz királyra.
      * 
-     * @param szin a király színe
+     * @param szin a király színe.
      */
     public Kiraly(String szin) {
         super(szin,"K");
@@ -22,14 +22,15 @@ public class Kiraly extends Babu {
      
     /**
      * Végrehajtja egy király bábú lépését amennyiben jó lépés volt megadva.
-     * 
-     * @param i amelyik sorból lépünk a bábúval
-     * @param j amelyik oszlopból lépünk a bábúval
-     * @param x amelyik sorba lépünk a bábúval
-     * @param y amelyik oszlopba lépünk a bábúval
-     * @return a lépés helyessége, 0 ha nem lehet meglépni, 1 ha meg lehet lépni
+     * A visszatérési érték 0, ha nem lehet meglépni, 1 ha meg lehet lépni
      * és egyszerű lépésről van szó, és 2 ha rosálásról van szó. Utóbbi esetében
-     * elvégzi a bástya bábú lépését is a király lépése mellett.
+     * áthelyezi a bástya bábút is a lépésnek megfelelően.
+     * 
+     * @param i amelyik sorból lépünk a bábúval.
+     * @param j amelyik oszlopból lépünk a bábúval.
+     * @param x amelyik sorba lépünk a bábúval.
+     * @param y amelyik oszlopba lépünk a bábúval.
+     * @return a lépés helyessége.
      */
     @Override
     public int lepes(int i, int j, int x, int y) {
@@ -68,6 +69,19 @@ public class Kiraly extends Babu {
         return 0;
     }
     
+    
+    /**
+     * Ellenőrzi, hogy jó lépés volt megadva. A visszatérési érték 0, ha
+     * nem lehet meglépni a lépést, 1 ha meg lehet lépni és egyszerű
+     * király lépésről van szó, és 2 ha meg lehet lépni, és rosálásról
+     * van szó.
+     * 
+     * @param i amelyik sorból lépünk a bábúval.
+     * @param j amelyik oszlopból lépünk a bábúval.
+     * @param x amelyik sorba lépünk a bábúval.
+     * @param y amelyik oszlopba lépünk a bábúval.
+     * @return lépés jól volt e megadva.
+     */
     @Override
     public int lepesEllenorzese(int i, int j, int x, int y) {
         Tabla t = new Tabla();

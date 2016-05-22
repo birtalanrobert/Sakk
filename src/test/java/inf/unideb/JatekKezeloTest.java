@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -135,7 +133,7 @@ public class JatekKezeloTest {
     }
     
     @Test
-    public void felhasznaloFrissitesEllenorzes() throws TransformerException {
+    public void felhasznaloFrissitesEllenorzes() throws TransformerException, ParserConfigurationException, SAXException, IOException {
         JatekKezelo jKezelo = new JatekKezelo();
         RegisztracioKezeles rkezelo = new RegisztracioKezeles();
         XMLFeldolgozoFelhaszanlo feldolgozo = new XMLFeldolgozoFelhaszanlo();
