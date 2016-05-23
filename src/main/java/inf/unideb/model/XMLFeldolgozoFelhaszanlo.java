@@ -50,7 +50,8 @@ public class XMLFeldolgozoFelhaszanlo {
 
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse("src/main/resources/xml/felhasznalok.xml");//kiszedni az utvonalat
+            //Document doc = dBuilder.parse("src/main/resources/xml/felhasznalok.xml");//kiszedni az utvonalat
+            Document doc = dBuilder.parse("felhasznalok.xml");
 
             doc.getDocumentElement().normalize();
 
@@ -87,7 +88,8 @@ public class XMLFeldolgozoFelhaszanlo {
             DocumentBuilder dBuilder;
             dBuilder = dbFactory.newDocumentBuilder();
         
-            Document doc = dBuilder.parse("src/main/resources/xml/felhasznalok.xml");//kiszedni az utvonalat
+            //Document doc = dBuilder.parse("src/main/resources/xml/felhasznalok.xml");//kiszedni az utvonalat
+            Document doc = dBuilder.parse("felhasznalok.xml");
             Element gyoker = doc.getDocumentElement();
             Element ujFelhasznalo = doc.createElement("felhasznalo");
             
@@ -109,7 +111,8 @@ public class XMLFeldolgozoFelhaszanlo {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            File f = new File("src/main/resources/xml/felhasznalok.xml");//kiszedni az utvonalat
+            //File f = new File("src/main/resources/xml/felhasznalok.xml");//kiszedni az utvonalat
+            File f = new File("felhasznalok.xml");
             StreamResult result = new StreamResult(f);
 
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -161,7 +164,8 @@ public class XMLFeldolgozoFelhaszanlo {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder;
         dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.parse("src/main/resources/xml/felhasznalok.xml");//kiszedni az utvonalat
+        //Document doc = dBuilder.parse("src/main/resources/xml/felhasznalok.xml");//kiszedni az utvonalat
+        Document doc = dBuilder.parse("felhasznalok.xml");
         
         NodeList nodes = doc.getElementsByTagName("felhasznalo");
 
@@ -179,7 +183,8 @@ public class XMLFeldolgozoFelhaszanlo {
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
                 DOMSource source = new DOMSource(doc);
-                File f = new File("src/main/resources/xml/felhasznalok.xml");//kiszedni az utvonalat
+                //File f = new File("src/main/resources/xml/felhasznalok.xml");//kiszedni az utvonalat
+                File f = new File("felhasznalok.xml");
                 StreamResult result = new StreamResult(f);
 
                 transformer.setOutputProperty(OutputKeys.INDENT, "yes");
