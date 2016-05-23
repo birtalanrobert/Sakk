@@ -3,4 +3,4 @@
  * <em>controller</em> osztályokat tartalmazza.
  */
 
-package inf.unideb.controller;
+package inf.unideb.controllers;
