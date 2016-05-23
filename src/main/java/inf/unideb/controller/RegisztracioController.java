@@ -23,7 +23,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
-
+/**
+* A regisztrálást elvégző {@code Controller} osztály.
+*/
 public class RegisztracioController {
     private static final Logger logger = LoggerFactory.getLogger(RegisztracioController.class);
 

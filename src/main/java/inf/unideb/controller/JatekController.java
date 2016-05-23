@@ -30,9 +30,8 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 /**
- *
- * @author Birtalan
- */
+* A játékmenetet elvégző {@code Controller} osztály.
+*/
 public class JatekController implements Initializable{
     
     private static final Logger logger = LoggerFactory.getLogger(JatekController.class);

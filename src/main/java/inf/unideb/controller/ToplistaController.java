@@ -19,6 +19,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
+/**
+* A toplistát kiíró {@code Controller} osztály.
+*/
 public class ToplistaController implements Initializable {
 
     private static final Logger logger = LoggerFactory.getLogger(ToplistaController.class);
