@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<configuration debug="true">
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+ 	</appender>
+
+	<appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+		<smtpHost>${SMTPAppender.SMTPHost}</smtpHost>
+		<to>${SMTPAppender.To}</to>
+		<from>${SMTPAppender.From}</from>
+		<subject>%logger{20} - %m</subject>
+		<layout>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</layout>
+		<asynchronousSending>false</asynchronousSending>
+ 	</appender>
+
+	<root level="ALL">
+		<appender-ref ref="STDOUT"/>
+		<appender-ref ref="EMAIL"/>
+	</root>
+
+</configuration>
