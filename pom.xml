@@ -56,7 +56,7 @@
                         <configuration>
                             <rules>
                                 <requireJavaVersion>
-                                    <version>[1.7,)</version>
+                                    <version>[1.8-40,)</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
