@@ -95,7 +95,6 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-			    <workingDirectory>${basedir}/target</workingDirectory>
                             <executable>${java.home}/../bin/javafxpackager</executable>
                             <arguments>
                                 <argument>-createjar</argument>
@@ -117,7 +116,6 @@
                             <goal>exec</goal>                            
                         </goals>
                         <configuration>
-			    <workingDirectory>${basedir}/target</workingDirectory>
                             <executable>${java.home}/bin/java</executable>
                             <commandlineArgs>${runfx.args}</commandlineArgs>
                         </configuration>
@@ -146,7 +144,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.16</version>
                 <configuration>
-		    <workingDirectory>${basedir}/target</workingDirectory>
                     <additionalClasspathElements>
                         <additionalClasspathElement>${java.home}/lib/jfxrt.jar</additionalClasspathElement>
                     </additionalClasspathElements>
@@ -169,7 +166,11 @@
                                     <directory>src/main/resources/xml</directory>
                                     <filtering>true</filtering>
                                 </resource>
-                            </resources>              
+				<resource>
+                                    <directory>src/main/resources/img</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
                         </configuration>            
                     </execution>
                 </executions>

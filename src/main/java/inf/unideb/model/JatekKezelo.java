@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import org.xml.sax.SAXException;
+import java.io.File;
 
 /**
  * A játék menetét és a {@code Controller} osztályokat összekötő osztály.
@@ -190,10 +191,18 @@ public class JatekKezelo {
      */
     public ImageView setParaszt(ImageView iv, String szin) {
         Image img;
-        if(szin.equals("W"))
-            img = new Image(ClassLoader.getSystemResourceAsStream("img/WP.png"));
-        else
-            img = new Image(ClassLoader.getSystemResourceAsStream("img/BP.png"));
+        if(szin.equals("W")) {
+            //img = new Image(ClassLoader.getSystemResourceAsStream("img/WP.png"));
+
+	    File kep = new File("target/WP.png");
+            img = new Image(kep.toURI().toString());
+
+	}
+        else {
+            //img = new Image(ClassLoader.getSystemResourceAsStream("img/BP.png"));
+	    File kep = new File("target/BP.png");
+            img = new Image(kep.toURI().toString());
+	}
         iv.setImage(img);
         return iv;
     }
@@ -209,10 +218,16 @@ public class JatekKezelo {
      */
     public ImageView setBastya(ImageView iv, String szin) {
         Image img;
-        if(szin.equals("W"))
-            img = new Image(ClassLoader.getSystemResourceAsStream("img/WB.png"));
-        else
-            img = new Image(ClassLoader.getSystemResourceAsStream("img/BB.png"));
+        if(szin.equals("W")) {
+           // img = new Image(ClassLoader.getSystemResourceAsStream("img/WB.png"));
+	    File kep = new File("target/WB.png");
+            img = new Image(kep.toURI().toString());
+	}
+        else {
+            //img = new Image(ClassLoader.getSystemResourceAsStream("img/BB.png"));
+ 	     File kep = new File("target/BB.png");
+            img = new Image(kep.toURI().toString());
+	}
         iv.setImage(img);
         return iv;
     }
@@ -228,10 +243,18 @@ public class JatekKezelo {
      */
     public ImageView setLo(ImageView iv, String szin) {
         Image img;
-        if(szin.equals("W"))
-            img = new Image(ClassLoader.getSystemResourceAsStream("img/WL.png"));
-        else
-            img = new Image(ClassLoader.getSystemResourceAsStream("img/BL.png"));
+        if(szin.equals("W")) {
+         //   img = new Image(ClassLoader.getSystemResourceAsStream("img/WL.png"));
+	    File kep = new File("target/WL.png");
+            img = new Image(kep.toURI().toString());
+
+	}        
+	else {
+         //   img = new Image(ClassLoader.getSystemResourceAsStream("img/BL.png"));
+	    File kep = new File("target/BL.png");
+            img = new Image(kep.toURI().toString());
+
+	}
         iv.setImage(img);
         return iv;
     }
@@ -247,10 +270,18 @@ public class JatekKezelo {
      */
     public ImageView setFuto(ImageView iv, String szin) {
         Image img;
-        if(szin.equals("W"))
-            img = new Image(ClassLoader.getSystemResourceAsStream("img/WF.png"));
-        else
-            img = new Image(ClassLoader.getSystemResourceAsStream("img/BF.png"));
+        if(szin.equals("W")) {
+         //   img = new Image(ClassLoader.getSystemResourceAsStream("img/WF.png"));
+	    File kep = new File("target/WF.png");
+            img = new Image(kep.toURI().toString());
+
+	}
+        else {
+         //   img = new Image(ClassLoader.getSystemResourceAsStream("img/BF.png"));
+	    File kep = new File("target/BF.png");
+            img = new Image(kep.toURI().toString());
+
+	}
         iv.setImage(img);
         return iv;
     }
@@ -266,10 +297,18 @@ public class JatekKezelo {
      */
     public ImageView setKiraly(ImageView iv, String szin) {
         Image img;
-        if(szin.equals("W"))
-            img = new Image(ClassLoader.getSystemResourceAsStream("img/WK.png"));
-        else
-            img = new Image(ClassLoader.getSystemResourceAsStream("img/BK.png"));
+        if(szin.equals("W")) {
+         //   img = new Image(ClassLoader.getSystemResourceAsStream("img/WK.png"));
+	    File kep = new File("target/WK.png");
+            img = new Image(kep.toURI().toString());
+
+	}
+        else {
+        //    img = new Image(ClassLoader.getSystemResourceAsStream("img/BK.png"));
+	    File kep = new File("target/BK.png");
+            img = new Image(kep.toURI().toString());
+
+	}
         iv.setImage(img);
         return iv;
     }
@@ -285,10 +324,18 @@ public class JatekKezelo {
      */
     public ImageView setKiralyno(ImageView iv, String szin) {
         Image img;
-        if(szin.equals("W"))
-            img = new Image(ClassLoader.getSystemResourceAsStream("img/WQ.png"));
-        else
-            img = new Image(ClassLoader.getSystemResourceAsStream("img/BQ.png"));
+        if(szin.equals("W")) {
+         //   img = new Image(ClassLoader.getSystemResourceAsStream("img/WQ.png"));
+	    File kep = new File("target/WQ.png");
+            img = new Image(kep.toURI().toString());
+
+	}
+        else {
+            //img = new Image(ClassLoader.getSystemResourceAsStream("img/BQ.png"));
+	    File kep = new File("target/BQ.png");
+            img = new Image(kep.toURI().toString());
+
+	}
         iv.setImage(img);
         return iv;
     }
