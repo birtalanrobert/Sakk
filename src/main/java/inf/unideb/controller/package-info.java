@@ -3,4 +3,4 @@
  * <em>controller</em> osztályokat tartalmazza.
  */
 
-package hu.danco.controllers;
+package inf.unideb.controllers;
